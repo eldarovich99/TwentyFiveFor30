@@ -4,7 +4,7 @@ class Time(private val minutes: Int = 0, private val seconds: Int = 0) {
     fun inc(): Time {
         val newSeconds: Int
         val newMinutes: Int
-        if (seconds < 60) {
+        if (seconds < 59) {
             newSeconds = seconds + 1
             newMinutes = minutes
         } else {
