@@ -1,0 +1,2 @@
+rootProject.name = "TwentyFiveFor30"
+include ':app'
