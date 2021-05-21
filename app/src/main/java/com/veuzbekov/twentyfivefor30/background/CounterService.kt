@@ -5,10 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Binder
-import android.os.Build
-import android.os.IBinder
-import android.os.PowerManager
+import android.os.*
 import android.widget.Toast
 import com.veuzbekov.twentyfivefor30.R
 import com.veuzbekov.twentyfivefor30.UnlockEventBus
@@ -16,13 +13,14 @@ import com.veuzbekov.twentyfivefor30.ui.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import java.util.*
+
 
 class CounterService : Service() {
     private var wakeLock: PowerManager.WakeLock? = null
     private var isServiceStarted = false
+    private val timer = Timer()
     private fun log(text: String) {
 
     }
@@ -89,12 +87,14 @@ class CounterService : Service() {
             }
             log("End of the loop for the service")
         }
+        launchTimer()
     }
 
     private fun stopService() {
         log("Stopping the foreground service")
         makeText("Service stopping")
         try {
+            timer.cancel()
             wakeLock?.let {
                 if (it.isHeld) {
                     it.release()
@@ -112,6 +112,25 @@ class CounterService : Service() {
     fun makeText(text: String) {
         if (false) {
             Toast.makeText(baseContext, text, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun launchTimer() {
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                alert()
+            }
+
+        }, 30 * 60000)
+    }
+
+    private fun alert() {
+        val v = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(750, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            //deprecated in API 26
+            v.vibrate(750)
         }
     }
 
@@ -181,10 +200,9 @@ class CounterService : Service() {
     }
 
     private fun unregisterAll() {
-        try{
+        try {
             unregisterReceiver(phoneLockStateReceiver)
-        }
-        catch (e: IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             // ok
         }
     }
