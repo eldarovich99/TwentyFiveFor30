@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
         android:textColor="@color/black"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@id/timeTextView"
         app:layout_constraintStart_toStartOf="@+id/timeTextView"
         app:layout_constraintTop_toBottomOf="@id/timeTextView"
@@ -36,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textSize="24sp"
         android:textColor="@color/black"
+        android:textSize="24sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/timeTextView"
         app:layout_constraintStart_toStartOf="@+id/timeTextView"
@@ -49,10 +49,21 @@
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        tools:text="@string/start"
         app:layout_constraintEnd_toEndOf="@+id/approaches_counter"
         app:layout_constraintStart_toStartOf="@+id/approaches_counter"
         app:layout_constraintTop_toBottomOf="@+id/numbers_counter"
-        tools:background="@color/orange_3" />
+        tools:background="@color/orange_3"
+        tools:text="@string/start" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/help_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_baseline_emoji_objects_24"
+        app:fabCustomSize="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         binding.controlButton.setOnClickListener {
             viewModel.onStartButtonClicked()
         }
+        binding.helpButton.setOnClickListener {
+            val intent = Intent(this, InfoActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupFlowObservers() {
