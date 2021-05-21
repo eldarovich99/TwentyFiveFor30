@@ -19,7 +19,7 @@ class MainViewModel(context: Application) : ViewModel() {
     private val approachesStateFlow: MutableStateFlow<Int> = MutableStateFlow(0)
     private val numbersStateFlow: MutableStateFlow<Int> = MutableStateFlow(0)
     private val timerScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private val started = MutableStateFlow(false)
+    private val started: MutableStateFlow<Boolean?> = MutableStateFlow(null)
     //private val sharedPrefs = context.getSharedPreferences("twentyFive", Context.MODE_PRIVATE)
 
     init {
@@ -29,7 +29,7 @@ class MainViewModel(context: Application) : ViewModel() {
     }
 
     fun onStartButtonClicked() {
-        if (started.value) {
+        if (started.value == true) {
             reset()
         } else
             startTimer()
@@ -69,7 +69,7 @@ class MainViewModel(context: Application) : ViewModel() {
     fun getTime(): StateFlow<Time> = time
     fun getApproaches(): StateFlow<Int> = approachesStateFlow
     fun getNumbers(): StateFlow<Int> = numbersStateFlow
-    fun getStartedFlow(): StateFlow<Boolean> = started
+    fun getStartedFlow(): StateFlow<Boolean?> = started
     class Factory(private val context: Application) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

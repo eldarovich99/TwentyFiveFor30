@@ -61,8 +61,11 @@ class MainActivity : AppCompatActivity() {
             binding.numbersCounter.text = getString(R.string.numbers_count, numbersCount)
         }.launchIn(uiScope)
         viewModel.getStartedFlow().onEach { started ->
-            binding.controlButton.text = getString(if (started) R.string.stop else R.string.start)
-            actionOnService(if (started) Actions.START else Actions.STOP)
+            binding.controlButton.text = getString(if (started == true) R.string.stop else R.string.start)
+            when (started){
+                true -> actionOnService(Actions.START)
+                false -> actionOnService(Actions.STOP)
+            }
         }.launchIn(uiScope)
     }
 
