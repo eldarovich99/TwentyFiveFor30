@@ -14,6 +14,17 @@ class Time(private val minutes: Int = 0, private val seconds: Int = 0) {
         return Time(minutes = newMinutes, seconds = newSeconds)
     }
 
-    fun min() = minutes
-    fun sec() = seconds
+    fun min(): String{
+        return if (minutes < 10)
+            "0${minutes}"
+        else
+            minutes.toString()
+    }
+
+    fun sec(): String{
+        return if (seconds < 10)
+            "0${seconds}"
+        else
+            seconds.toString()
+    }
 }
