@@ -84,4 +84,8 @@ class MainActivity : AppCompatActivity() {
             startService(it)
         }
     }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 }
