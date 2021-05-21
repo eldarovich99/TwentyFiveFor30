@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">TwentyFiveFor30</string>
-    <string name="approaches_count">Число подходов: %1$s</string>
-    <string name="numbers_count">Число номеров: %1$s</string>
+    <string name="approaches_count">Число подходов: %1$d</string>
+    <string name="numbers_count">Число номеров: %1$d</string>
+    <string name="start">Начать</string>
+    <string name="stop">Сбросить</string>
+    <string name="time_template">%1$d : %2$d</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/timeTextView"
@@ -38,9 +38,21 @@
         android:layout_marginTop="16dp"
         android:textSize="24sp"
         android:textColor="@color/black"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@id/timeTextView"
         app:layout_constraintStart_toStartOf="@+id/timeTextView"
         app:layout_constraintTop_toBottomOf="@id/approaches_counter"
         tools:text="Число номеров: 17" />
+
+    <Button
+        android:id="@+id/control_button"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        tools:text="@string/start"
+        app:layout_constraintEnd_toEndOf="@+id/approaches_counter"
+        app:layout_constraintStart_toStartOf="@+id/approaches_counter"
+        app:layout_constraintTop_toBottomOf="@+id/numbers_counter"
+        tools:background="@color/orange_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
